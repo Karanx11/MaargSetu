@@ -5,6 +5,7 @@ import { Server } from "socket.io"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js"
 import authRoutes from "./routes/authRoutes.js"
+import userRoutes from "./routes/userRoutes.js"
 
 dotenv.config()
 connectDB()
@@ -14,7 +15,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/api/auth", authRoutes)
-
+app.use("/api/user", userRoutes)
 // socket code stays same 👇
 const server = http.createServer(app)
 const io = new Server(server, {

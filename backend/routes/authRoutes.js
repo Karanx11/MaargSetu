@@ -1,9 +1,23 @@
 import express from "express"
-import { signup, login } from "../controllers/authController.js"
+import {
+  requestSignupOtp,
+  verifySignupOtp,
+  login,
+  forgotPassword,
+  resetPassword,
+} from "../controllers/authController.js"
 
 const router = express.Router()
 
-router.post("/signup", signup)
+// 🔐 OTP Signup
+router.post("/request-signup-otp", requestSignupOtp)
+router.post("/verify-signup-otp", verifySignupOtp)
+
+// 🔐 Login
 router.post("/login", login)
+
+// 🔁 Password Reset
+router.post("/forgot-password", forgotPassword)
+router.post("/reset-password", resetPassword)
 
 export default router

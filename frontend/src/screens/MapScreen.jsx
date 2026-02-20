@@ -118,17 +118,17 @@ export default function MapScreen({ role = "driver" }) {
 
   // ================= PROFILE =================
   if (showProfile) {
-    return (
-      <Profile
-        user={{
-          name: "Demo User",
-          email: "demo@maargsetu.com",
-          role,
-        }}
-        goBack={() => setShowProfile(false)}
-      />
-    )
-  }
+  return (
+    <Profile
+      goBack={() => setShowProfile(false)}
+      onLogout={() => {
+        localStorage.removeItem("token")
+        localStorage.removeItem("user")
+        window.location.reload()
+      }}
+    />
+  )
+}
 
   return (
     <div className="min-h-screen bg-black text-white relative">

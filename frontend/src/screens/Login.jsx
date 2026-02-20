@@ -1,7 +1,11 @@
 import { useState } from "react"
 import api from "../services/api"
 
-export default function Login({ goToSignup, goToMap }) {
+export default function Login({
+  goToSignup,
+  goToForgotPassword,
+  goToMap,
+}) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
@@ -66,6 +70,15 @@ export default function Login({ goToSignup, goToMap }) {
             {loading ? "Logging in..." : "Login"}
           </button>
 
+          {/* 🔐 Forgot Password */}
+          <p
+            onClick={goToForgotPassword}
+            className="text-center text-sm text-gray-400 cursor-pointer hover:text-white"
+          >
+            Forgot Password?
+          </p>
+
+          {/* 🆕 Signup */}
           <p
             onClick={goToSignup}
             className="text-center text-gray-400 text-sm cursor-pointer"
