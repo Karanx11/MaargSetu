@@ -8,6 +8,7 @@ export default function OtpSignup({ goToLogin }) {
   const [otp, setOtp] = useState("")
   const [name, setName] = useState("")
   const [password, setPassword] = useState("")
+  const [showPassword, setShowPassword] = useState(false)
   const [role, setRole] = useState("customer")
 
   const [loading, setLoading] = useState(false)
@@ -54,6 +55,7 @@ export default function OtpSignup({ goToLogin }) {
           Signup with OTP
         </h2>
 
+        {/* STEP 1 */}
         {step === 1 && (
           <>
             <input
@@ -62,6 +64,7 @@ export default function OtpSignup({ goToLogin }) {
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 mt-6 rounded-xl bg-black/40 border border-white/10"
             />
+
             <button
               onClick={sendOtp}
               className="w-full mt-4 py-3 bg-[#4CBB17] text-black rounded-xl"
@@ -71,6 +74,7 @@ export default function OtpSignup({ goToLogin }) {
           </>
         )}
 
+        {/* STEP 2 */}
         {step === 2 && (
           <>
             <input
@@ -80,13 +84,24 @@ export default function OtpSignup({ goToLogin }) {
               className="w-full mt-4 p-3 rounded-xl bg-black/40 border border-white/10"
             />
 
-            <input
-              placeholder="Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full mt-4 p-3 rounded-xl bg-black/40 border border-white/10"
-            />
+            {/* Password with Show / Hide */}
+            <div className="relative mt-4">
+              <input
+                placeholder="Password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 pr-12 rounded-xl bg-black/40 border border-white/10"
+              />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400 hover:text-white"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
 
             <input
               placeholder="Enter OTP"
@@ -95,6 +110,7 @@ export default function OtpSignup({ goToLogin }) {
               className="w-full mt-4 p-3 rounded-xl bg-black/40 border border-white/10"
             />
 
+            {/* Role Selection */}
             <div className="flex gap-4 mt-4">
               <button
                 onClick={() => setRole("driver")}
